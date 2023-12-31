@@ -95,10 +95,25 @@ const filteredPokemons = computed(() => {
     />
   </footer>
   <Teleport to="body">
-    <PokemonModal
-      :pokemon-id="modal.selected"
-      v-show="modal.open"
-      @close="modal.open = false"
-    />
+    <Transition>
+      <PokemonModal
+        :pokemon-id="modal.selected"
+        v-show="modal.open"
+        @close="modal.open = false"
+      />
+    </Transition>
   </Teleport>
 </template>
+
+<style scoped>
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+  transform: scale(0.6);
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: all 0.3s ease;
+}
+</style>
